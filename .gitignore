@@ -27,3 +27,5 @@ Thumbs.db
 # Render or deployment artifacts (optional)
 build/
 dist/
+
+creds.txt

@@ -10,6 +10,7 @@ app.get('/ppics', async (req, res) => {
   }
 
   try {
+    console.log('url', url)
     const response = await fetch(url);
     const contentType = response.headers.get('content-type') || 'application/octet-stream';
     res.set('Content-Type', contentType);
