@@ -1,6 +1,5 @@
-// server.js
 const express = require('express');
-const fetch = require('node-fetch');
+const axios = require('axios');
 const app = express();
 
 app.get('/ppics', async (req, res) => {
@@ -10,14 +9,16 @@ app.get('/ppics', async (req, res) => {
   }
 
   try {
-    console.log('url', url)
-    const response = await fetch(url);
-    const contentType = response.headers.get('content-type') || 'application/octet-stream';
-    res.set('Content-Type', contentType);
+    console.log('url', url);
+    const response = await axios.get(url, {
+      responseType: 'stream',
+    });
+
+    res.set('Content-Type', response.headers['content-type'] || 'application/octet-stream');
     res.status(response.status);
-    response.body.pipe(res);
+    response.data.pipe(res); // stream the image
   } catch (e) {
-    console.error('P error:', e);
+    console.error('P error:', e.message);
     res.status(500).send('P failed');
   }
 });
