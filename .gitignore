@@ -29,3 +29,6 @@ build/
 dist/
 
 creds.txt
+
+/backup
+render.yaml
