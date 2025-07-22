@@ -24,7 +24,7 @@ app.use(cors({
 app.get('/pp', async (req, res) => {
   const { u } = req.query;
 
-  if (!u || !url.startsWith('/')) {
+  if (!u || !u.startsWith('/')) {
     return res.status(400).send('Invalid or missing relative URL');
   }
 
