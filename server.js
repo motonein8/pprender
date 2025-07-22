@@ -22,13 +22,13 @@ app.use(cors({
 }));
 
 app.get('/pp', async (req, res) => {
-  const { url } = req.query;
+  const { u } = req.query;
 
-  if (!url || !url.startsWith('/')) {
+  if (!u || !url.startsWith('/')) {
     return res.status(400).send('Invalid or missing relative URL');
   }
 
-  const targetUrl = CDN_BASE.replace(/\/+$/, '') + url;
+  const targetUrl = CDN_BASE.replace(/\/+$/, '') + u;
 
   try {
     const response = await axios.get(targetUrl, { responseType: 'stream' });
